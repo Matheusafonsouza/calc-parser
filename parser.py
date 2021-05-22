@@ -51,3 +51,7 @@ class CalcTransformer(InlineTransformer):
         except ValueError:
             return float(token)
 
+    def assign(self, name_var, value):
+        self.vars[name_var] = value
+        return self.vars[name_var]
+
