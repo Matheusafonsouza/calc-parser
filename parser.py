@@ -55,3 +55,19 @@ class CalcTransformer(InlineTransformer):
         self.vars[name_var] = value
         return self.vars[name_var]
 
+    def start(self, *args):
+        return args[-1]
+
+
+    def func(self, name_var, *args):
+        name_var = str(name_var)
+        fn = self.variables[name_var.split('-')[-1]]
+        try:
+            if name_var[0] == '-':
+                return -fn(*args)
+            else:
+                fn = self.variables[name_var]
+                return fn(*args)
+        except:
+            return "Invalid!"
+
